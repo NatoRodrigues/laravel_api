@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\beta;
 
 use App\Models\Task;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TaskResource;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 
@@ -13,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return TaskResource::collection(Task::all());
     }
 
     /**
@@ -37,9 +39,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return TaskResource::make($task);
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      */
